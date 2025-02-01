@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de contactos</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!--Logo y barra de búsqueda-->
+    <header>
+        <h2 style="margin-left: 3rem; margin-top: 1rem; font-weight: 800; font-size: 30px;"><a href="index.html" style="text-decoration: none; color: black;">Gestor de Contactos</a></h3>
+        <div class="search-bar">
+            <form role="search" style="float: right; margin-top: 1rem;">
+                <input type="search" spellcheck="false" placeholder="Buscar contacto" class="placeholder-text" id="search-input" style="width: 300px;" required>
+            </form>
+            <div class="box" style="float: right;">
+                <img src="Images/search.png" alt="Buscar">
+            </div>
+        </div>
+    </header>
+    <br><br>
+    <!--Agregar un contacto nuevo-->
+    <div style="display: inline-block">
+        <h4 style="margin-left: 3rem; font-weight: 600;">Añadir un nuevo contacto:</h4>
+        <form role="text" style="float: right;">
+            <label for="name" style="margin-left: 5rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: 700;">Nombre:</label>
+            <br>
+            <input type="text" spellcheck="false" id="nameContact" style="display: inline-flex; align-items: center; margin-left: 6rem; border-radius: 30px; width: 20rem; height: 2rem; border: 1px solid black; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 16px;" required><!--Input para añadir el nombre del contacto-->
+            <br><br>
+            <label for="email" style="margin-left: 5rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: 700;">Email:</label>
+            <br>
+            <input type="text" spellcheck="false" id="emailContact" style="display: inline-flex; align-items: center; margin-left: 6rem; border-radius: 30px; width: 20rem; height: 2rem; border: 1px solid black; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 16px;" required><!--Input para añadir el email del contacto-->
+            <br><br>
+            <label for="phone" style="margin-left: 5rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: 700;">Número:</label>
+            <br>
+            <input type="text" spellcheck="false" id="numberContact" style="display: inline-flex; align-items: center; margin-left: 6rem; border-radius: 30px; width: 20rem; height: 2rem; border: 1px solid black; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 16px;" required><!--Input para añadir el numero de telefono del contacto-->
+            <br><br>
+            <button type="submit" id="AddContact">Agregar</button>
+        </form>
+    </div>
+    <!--Lista de contactos-->
+    <div style="display: inline-flex; margin-left: 4rem; width: 52rem;">
+        <div class="col-md-8">
+            <h2>Lista de Contactos</h2>
+            <table class="table table-striped contact-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo Electrónico</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="viewContacts">
+                    <!-- Los contactos se agregarán dinámicamente aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br><br><br>
+    <!--Footer-->
+    <footer>
+        <p style="margin-left: 3rem; font-weight: 600;">Desarrollado por: <a href="Secundarios/info.html" style="text-decoration: none;">Martin Adolfo Bravo Montaño</a></p>
+    </footer>
+
+    <script>
+        const nameContact = document.getElementById('nameContact');
+        const emailContact = document.getElementById('emailContact');
+        const numberContact = document.getElementById('numberContact');
+        const searchInput = document.getElementById('search-input');
+        const contactList = document.getElementById('viewContacts');
+        const addContact = document.getElementById('AddContact'); // Corregido (antes estaba como "taskButton")
+    
+        // Función para validar email
+        function validateEmail(email) {
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
+        }
+    
+        // Función para validar teléfono
+        function validatePhone(phone) {
+            const phonePattern = /^\+?\d{1,3}?[-.\s]?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{3,4}$/;
+            return phonePattern.test(phone);
+        }
+    
+        // Función para guardar contactos en localStorage
+        function saveContacts() {
+            const contacts = [];
+            document.querySelectorAll('.contact-item').forEach(row => {
+                contacts.push({
+                    name: row.querySelector('.name').innerText,
+                    email: row.querySelector('.email').innerText,
+                    phone: row.querySelector('.phone').innerText
+                });
+            });
+            localStorage.setItem('contacts', JSON.stringify(contacts));
+        }
+    
+        // Función para mostrar los contactos guardados en localStorage
+        function loadContacts() {
+            const savedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            contactList.innerHTML = ''; // Limpia la tabla antes de añadir contactos
+            savedContacts.forEach(contact => addContactToTable(contact.name, contact.email, contact.phone));
+        }
+    
+        // Función para agregar un contacto a la tabla
+        function addContactToTable(name, email, phone) {
+            const row = document.createElement('tr');
+            row.classList.add('contact-item');
+            row.innerHTML = `
+                <td class="name">${name}</td>
+                <td class="email">${email}</td>
+                <td class="phone">${phone}</td>
+                <td><button onclick="deleteContact(this)">❌</button></td>
+            `;
+            contactList.appendChild(row);
+            saveContacts();
+        }
+    
+        // Función para eliminar contacto
+        function deleteContact(button) {
+            button.parentElement.parentElement.remove();
+            saveContacts();
+        }
+    
+        // Evento para agregar contacto con validaciones
+        addContact.addEventListener('click', (event) => {
+            event.preventDefault();
+    
+            const name = nameContact.value.trim();
+            const email = emailContact.value.trim();
+            const phone = numberContact.value.trim();
+    
+            // Verificamos que los campos no estén vacíos
+            if (!name || !email || !phone) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+    
+            // Validamos el correo
+            if (!validateEmail(email)) {
+                alert("Por favor, ingresa un correo electrónico válido.");
+                return;
+            }
+    
+            // Validamos el número de teléfono
+            if (!validatePhone(phone)) {
+                alert("Por favor, ingresa un número de teléfono válido.");
+                return;
+            }
+    
+            // Si todo está correcto, se agrega el contacto
+            addContactToTable(name, email, phone);
+    
+            // Limpiar los inputs
+            nameContact.value = '';
+            emailContact.value = '';
+            numberContact.value = '';
+        });
+    
+        // Cargar los contactos al cargar la página
+        window.addEventListener('load', loadContacts);
+    </script>
+    
+</body>
+</html>
