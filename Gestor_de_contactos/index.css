@@ -1,0 +1,216 @@
+/*Estilo del cuerpo*/
+body {
+    margin: 0;
+    padding: 0;
+}
+header {
+    display: -webkit-inline-flex;
+    margin: 0;
+    background: #007bff;
+    height: 5rem;
+    width: 100%;
+}
+footer {
+    position: fixed;
+    background: #4692e4;
+    width: 100%;
+    height: 6rem;
+    bottom: 0;
+}    
+/*Estilo de las fuentes y enlaces*/
+h1, h2, h3, h4, h5, h6 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+}
+
+/*Estilo de la barra de busqueda*/
+.register-btn {
+    background: #1100ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    position: relative;
+    margin-left: 3rem;
+    border-radius: 10px;
+}
+.register-btn:hover {
+    transition: all 0.5s;
+    background: #0205b2;
+}
+.search-bar {
+    display: inline-flex;
+    position: relative;
+    float: right;
+}
+input[type="search"] {
+    margin-left: 20rem;
+    width: 200px;
+    min-width: none;
+    max-width: 400px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+::placeholder {
+    padding: 2px;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    justify-content: center;
+    color: black;
+    border-radius: 10px;
+}
+.placeholder-text {
+    padding-inline-start: 20px;
+    padding-inline-end: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: grey;
+    margin-left: 1rem;
+}
+.placeholder-text:hover {
+    transition: all 0.5s;
+    background: #55a7ff;
+}
+
+/*Boton de envio*/
+button[type="submit"] {
+    background: #1100ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    position: relative;
+    margin-left: 3rem;
+    border-radius: 30px;
+}
+button[type="submit"]:hover {
+    transition: all 0.5s;
+    background: #020494;
+}
+
+/*Entradas de contacto*/
+input[type="text"] {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6rem;
+    border-radius: 30px;
+    width: 20rem;
+    height: 2rem;
+    border: 1px solid black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding-left: 2rem;
+}
+input[type="text"]:hover {
+    transition: all 0.5s;
+}
+input[type="email"] {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6rem;
+    border-radius: 30px;
+    width: 20rem;
+    height: 2rem;
+    border: 1px solid black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding-left: 2rem;
+}
+input[type="email"]:hover {
+    transition: all 0.5s;
+}
+input[type="tel"] {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6rem;
+    border-radius: 30px;
+    width: 20rem;
+    height: 2rem;
+    border: 1px solid black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding-left: 2rem;
+}
+input[type="tel"]:hover {
+    transition: all 0.5s;
+}
+
+/*Estilo de la tabla de contactos*/
+.table-contacts {
+    display: inline-flex;
+    width: 40rem;
+}
+.table-contacts::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #007bff;
+    z-index: -1;
+    opacity: 0.5;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1rem;
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+        border: 1px solid #007bff;
+}
+.table-contacts .col-md-8 {
+    width: 100%;
+}
+.table-contacts h2 {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-weight: 800;
+    font-size: 30px;
+}
+.table-contacts table { 
+    width: 100%;
+    margin-left: 4rem;
+}
+.table-contacts thead {
+    background: #007bff;
+    color: white;
+    border-radius: 20px;
+}
+.table-contacts thead th {
+    color: white;
+
+}
+.table-contacts tbody {
+    background: #f5f5f5;
+
+}
+.table-contacts tbody td {
+    color: black;
+
+}
+.table-contacts tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+.table-contacts tbody tr:hover {
+    background: #4a90dc;        
+    color: white;
+    transition: all 0.6s ease-in-out;
+    transform: scale(1.1) translateY(-5px);
+}
